@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Monitoramento de Ruído</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <header class="app-header">
+            <h1>🔊 Sistema de Monitoramento de Ruído</h1>
+            <p class="subtitle">Monitoramento em tempo real via Firebase</p>
+            <div class="connection-status" id="connectionStatus">
+                🔴 Conectando ao Firebase...
+            </div>
+            <div class="last-update" id="lastUpdate">
+                Última atualização: --:--:--
+            </div>
+        </header>
+
+        <div class="rooms-container">
+            <div class="room room-1 gray" id="room1">
+                <div class="room-header">
+                    <h2>🏢 Sala 1</h2>
+                    <div class="room-icon" id="room1Icon">⚪</div>
+                </div>
+                <div class="room-content">
+                    <div class="noise-level">
+                        <span class="label">Nível RMS:</span>
+                        <span class="value" id="room1Rms">--</span>
+                    </div>
+                    <div class="noise-status">
+                        <span class="label">Status:</span>
+                        <span class="status" id="room1Status">AGUARDANDO</span>
+                    </div>
+                    <div class="alert-message" id="room1Alert">
+                        Aguardando dados...
+                    </div>
+                </div>
+            </div>
+
+            <div class="room room-2 gray" id="room2">
+                <div class="room-header">
+                    <h2>🏢 Sala 2</h2>
+                    <div class="room-icon" id="room2Icon">⚪</div>
+                </div>
+                <div class="room-content">
+                    <div class="noise-level">
+                        <span class="label">Nível RMS:</span>
+                        <span class="value" id="room2Rms">--</span>
+                    </div>
+                    <div class="noise-status">
+                        <span class="label">Status:</span>
+                        <span class="status" id="room2Status">AGUARDANDO</span>
+                    </div>
+                    <div class="alert-message" id="room2Alert">
+                        Aguardando dados...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            <div class="legend">
+                <h3>Legenda:</h3>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <span class="color-indicator green"></span>
+                        <span>Ruído Normal (≤ 1000)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-indicator red"></span>
+                        <span>Ruído Alto (> 1000)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-indicator gray"></span>
+                        <span>Aguardando Dados</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tech-info">
+                <p>Dados coletados via Heltec WiFi LoRa 32v2</p>
+                <p>Integração com Firebase Realtime Database</p>
+                <p>URL: hpmiotbruno-default-rtdb.firebaseio.com</p>
+            </div>
+        </footer>
+
+        <div class="controls">
+            <button id="refreshBtn" class="control-btn">🔄 Atualizar</button>
+            <button id="debugBtn" class="control-btn">🐛 Debug</button>
+        </div>
+
+        <div class="debug-panel" id="debugPanel" style="display: none;">
+            <h3>Debug - Dados do Firebase</h3>
+            <pre id="debugData">Aguardando dados...</pre>
+        </div>
+    </div>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
+
